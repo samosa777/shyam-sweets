@@ -15,16 +15,17 @@
 
         /* Navigation */
         nav { position: fixed; top: 0; width: 100%; padding: 5px 50px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); z-index: 1000; }
-        .nav-logo img { height: 120px; width: auto; cursor: pointer; transition: 0.3s; display: block; }
+        .nav-logo img { height: 100px; width: auto; cursor: pointer; transition: 0.3s; display: block; }
         .nav-logo img:hover { transform: scale(1.05); }
+        .nav-links { display: flex; }
         .nav-links a { color: var(--white); text-decoration: none; margin-left: 25px; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--gold); }
 
         /* Hero Section */
         .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         #bg-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); object-fit: cover; z-index: -1; }
-        .hero-overlay { text-align: center; color: white; background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; }
-        .hero-overlay h1 { font-family: 'Playfair Display'; font-size: 5rem; letter-spacing: 5px; }
+        .hero-overlay { text-align: center; color: white; background: rgba(0,0,0,0.3); padding: 40px; border-radius: 20px; width: fit-content; margin: 0 20px; }
+        .hero-overlay h1 { font-family: 'Playfair Display'; font-size: 5rem; letter-spacing: 5px; line-height: 1.2; }
 
         /* Legacy Section */
         .container { padding: 80px 10%; }
@@ -32,7 +33,7 @@
         .about-text h2 { font-family: 'Playfair Display'; font-size: 2.8rem; margin-bottom: 20px; }
         .about-image img { width: 100%; border-radius: 10px; box-shadow: 15px 15px 0 var(--gold); }
 
-        /* Promise Section (Added) */
+        /* Promise Section */
         .promise-section { background: var(--dark); color: var(--white); padding: 80px 10%; text-align: center; }
         .promise-section h2 { font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
         .promise-section p.sub-title { margin-bottom: 50px; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
@@ -85,7 +86,29 @@
         .map-container iframe { width: 100%; height: 400px; border: 0; border-radius: 15px; }
         footer { background: var(--dark); color: #888; padding: 40px; text-align: center; font-size: 13px; }
 
-        @media (max-width: 768px) { .legacy-grid, .contact-section { grid-template-columns: 1fr; } .hero-overlay h1 { font-size: 3rem; } .nav-logo img { height: 80px; } }
+        /* MOBILE RESPONSIVE FIXES */
+        @media (max-width: 768px) {
+            nav { padding: 10px 15px; flex-direction: column; text-align: center; }
+            .nav-logo img { height: 60px; margin-bottom: 10px; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { margin-left: 0; font-size: 11px; letter-spacing: 1px; }
+
+            .hero-overlay h1 { font-size: 2.5rem; letter-spacing: 2px; }
+            .hero-overlay p { font-size: 0.8rem; letter-spacing: 2px !important; }
+
+            .legacy-grid { grid-template-columns: 1fr; gap: 30px; }
+            .container { padding: 40px 5%; }
+            .about-text h2 { font-size: 2rem; }
+            
+            .promise-section { padding: 40px 5%; }
+            .contact-section { grid-template-columns: 1fr; padding: 40px 5%; }
+            
+            .cat-card { width: 180px; height: 120px; }
+            .cat-card h3 { font-size: 1.1rem; }
+            
+            .items-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
+            .item-card img { height: 140px; }
+        }
     </style>
 </head>
 <body>
@@ -97,7 +120,7 @@
 
     <nav>
         <div class="nav-logo">
-            <a href="#home"><img src="Logo.png" alt="Logo"></a>
+            <a href="#home"><img src="Logo.jpg" alt="Logo"></a>
         </div>
         <div class="nav-links">
             <a href="#home">Home</a>
@@ -164,11 +187,6 @@
                 <div class="cat-card" onclick="toggleItems('extra', this)"><img src="ExtraBhatura.jpg"><h3>EXTRA</h3></div>
                 <div class="cat-card" onclick="toggleItems('chat', this)"><img src="Chat.jpg"><h3>CHAT</h3></div>
                 <div class="cat-card" onclick="toggleItems('veg', this)"><img src="Veg Stuffs.jpg"><h3>VEG STUFFS</h3></div>
-                <div class="cat-card" onclick="toggleItems('beverages', this)"><img src="Lassi.jpg"><h3>BEVERAGES</h3></div>
-                <div class="cat-card" onclick="toggleItems('soup', this)"><img src="TomatoSoup.jpg"><h3>SOUP</h3></div>
-                <div class="cat-card" onclick="toggleItems('local', this)"><img src="Jalebi.jpg"><h3>LOCAL</h3></div>
-                <div class="cat-card" onclick="toggleItems('momo', this)"><img src="VegMomo.jpg"><h3>MOMO</h3></div>
-                <div class="cat-card" onclick="toggleItems('extra', this)"><img src="ExtraBhatura.jpg"><h3>EXTRA</h3></div>
             </div>
         </div>
 
@@ -208,17 +226,15 @@
             <p><i class="fas fa-envelope"></i> <a href="mailto:shyam7sweet@gmail.com">shyam7sweet@gmail.com</a></p>
             <p><i class="fas fa-map-marker-alt"></i> Kohalpur-11, Banke</p>
             <p><i class="fas fa-clock"></i> 5:15 AM - 9:00 PM (Daily)</p>
-            <p><i class="fas fa-globe"></i> <a href="http://www.shyamsweets.com.np/" target="_blank">www.shyamsweets.com.np</a></p>
             
             <div class="social-links">
-                <a href="https://www.facebook.com/yourprofile" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/yourprofile" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@yourprofile" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/9779841409445" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
         <div class="map-container">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418.6659850720496!2d81.68652697841525!3d28.189745914658142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3998657f26c26dff%3A0x89a9846e471376c3!2sSHYAM%20SWEETS!5e1!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp&maptype=satellite" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3521.8211041135!2d81.6841!3d28.1882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDExJzE3LjUiTiA4McKwNDEnMDIuOCJF!5e0!3m2!1sen!2snp!4v1634567890123" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </section>
 
@@ -252,10 +268,7 @@
             if (!isAlreadyActive) {
                 if(selectedGrid) {
                     selectedGrid.style.display = 'grid';
-                    const categoryName = card.querySelector('h3').innerText;
-                    document.querySelectorAll('.cat-card').forEach(c => {
-                        if(c.querySelector('h3').innerText === categoryName) c.classList.add('active');
-                    });
+                    card.classList.add('active');
                     setTimeout(() => { selectedGrid.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }, 150);
                 }
             }
